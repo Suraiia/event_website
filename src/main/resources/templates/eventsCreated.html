@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+        <link th:href="@{/main.css}" rel="stylesheet">
+        <title>Historie</title>
+
+</head>
+<body>
+<div class="topnav" id="navbar">
+    <span class="logo">EventGo</span>
+    <a th:href="@{/create-event}" target=”_self”>Event hinzufügen</a>
+    <a th:href="@{/}" target=”_self”>Home</a>
+</div>
+
+<div>
+    <table class="tableStyle">
+        <thead>
+        <tr>
+            <th> Event Name </th>
+            <th> Datum </th>
+            <th> Teilnehmeranzahl </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${events.empty}">
+            <td colspan="2"> No Events Available </td>
+        </tr>
+        <tr th:each="event : ${events}">
+            <td><span th:text="${event.name}"> Name </span></td>
+            <td><span th:text="${event.eventDate}"> Datum </span></td>
+            <td><span th:text="${event.participant.size()}"> Teilnehmeranzahl </span></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

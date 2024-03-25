@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ich bin dabei</title>
+    <link th:href="@{/main.css}" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="topnav" id="navbar">
+    <span class="logo">EventGo</span>
+    <a th:href="@{/create-event}" target="_self">Events hinzufügen</a>
+    <a th:href="@{/}" target="_self">Home</a>
+</div>
+
+<div class="overview">
+
+    <span th:hidden="${event.eventId}"></span><br/>
+
+    <span th:text="${event.name}" class="eventName"></span><br/>
+    <br/>
+    <span>Erstellt von:</span>
+    <span th:text="${event.createdBy}"></span><br/>
+
+    <span>Event-Datum:</span>
+    <span th:text="${event.eventDate}"></span><br/>
+    <br/>
+    <span th:text="${event.description}" class="spaceDescription"></span><br/>
+
+    <form th:action="@{/add-participant(eventId=${event.eventId})}" th:object="${participant}" method="post">
+        <label for="name"></label>
+        <input type="text" th:field="*{name}" id="name" placeholder="Name">
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span><br/>
+        <input type="submit" value="Ich bin dabei">
+    </form>
+
+    <ul>
+        <span>Teilnehmer: </span><br/>
+        <br/><li th:each="participant: ${event.participant}"><span th:text="${participant.name}"</li>
+    </ul>
+</div>
+
+</body>
+</html>

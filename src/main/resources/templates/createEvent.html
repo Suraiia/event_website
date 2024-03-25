@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Events hinzufügen</title>
+    <link th:href="@{/main.css}" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="topnav" id="navbar">
+    <span class="logo">EventGo</span>
+    <a th:href="@{/events-created}" target="_self">Historie</a>
+    <a th:href="@{/}" target="_self">Home</a>
+</div>
+
+<div>
+    <h1>Event hinzufügen</h1>
+</div>
+<div class="containerForm">
+    <form th:action="@{/create-event}" th:object="${event}" method="post">
+
+        <ul class="flexForm">
+
+            <li>
+                <label for="name">Name</label>
+                <input type="text" th:field="*{name}" id="name" placeholder="Name" required>
+                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+            </li>
+
+            <li>
+                <label for="createdBy">Ersteller</label>
+                <input type="text" th:field="*{createdBy}" id="createdBy" placeholder="Ersteller" required>
+                <span th:if="${#fields.hasErrors('createdBy')}" th:errors="*{createdBy}"></span>
+            </li>
+
+            <li>
+                <label for="description">Beschreibung</label>
+                <textarea th:field="*{description}" id="description" placeholder="Beschreibung" maxlength="255" required></textarea>
+                <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
+            </li>
+
+            <li>
+                <label for="eventDate">Event Datum</label>
+                <input type="date" th:field="*{eventDate}" id="eventDate" placeholder="Event Datum" required>
+                <span th:if="${#fields.hasErrors('eventDate')}" th:errors="*{eventDate}"></span>
+            </li><br/>
+
+            <li><input type="submit" value="Hinzufügen"></li>
+        </ul>
+    </form>
+</div>
+
+</body>
+</html>

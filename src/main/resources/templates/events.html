@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <link th:href="@{/main.css}" rel="stylesheet">
+    <title>EventGo</title>
+</head>
+
+<body>
+
+<div class="topnav" id="navbar">
+    <span class="logo">EventGo</span>
+    <a th:href="@{/events-created}" target="_self">Historie</a>
+    <a th:href="@{/create-event}" target="_self">Events hinzufügen</a>
+</div>
+
+<h1>Firmenevents</h1>
+
+
+<section class="container">
+
+    <div class="flipCard" th:each="event: ${events}">
+        <div class="flipCardInner">
+            <div class="flipCardFront">
+
+                <span th:text="${event.name}"></span>
+                <br/>
+                <span th:text="${event.eventDate}"></span>
+
+            </div>
+            <div class="flipCardBack">
+
+                <span th:text="${event.description}"></span><br/>
+                <a th:href="@{/add-participant(eventId=${event.eventId})}" target="_self">Ich bin dabei</a>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+
+</html>
